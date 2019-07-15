@@ -29,7 +29,7 @@ public class UserLoadBalance implements LoadBalance {
         int id = 2;
         if (thread < weight_small) id = 0;
         else if (thread < weight_small + weight_medium) id = 1;
-        System.out.println(id + " | " + weight_large + ',' + weight_medium + ',' + weight_small);
+        //System.out.println(id + " | " + weight_large + ',' + weight_medium + ',' + weight_small);
         return invokers.get(id);
     }
 }
