@@ -26,7 +26,7 @@ public class CallbackServiceImpl implements CallbackService {
             @Override
             public void run() {
                 if (!listeners.isEmpty()) {
-                    String messageToPush = generateStatusMessage();
+                    //String messageToPush = generateStatusMessage();
                     for (Map.Entry<String, CallbackListener> entry : listeners.entrySet()) {
                         try {
                             //entry.getValue().receiveServerMsg(System.getProperty("quota") + " " + new Date().toString());
