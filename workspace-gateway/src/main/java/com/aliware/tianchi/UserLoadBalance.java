@@ -21,8 +21,9 @@ public class UserLoadBalance implements LoadBalance {
 
     @Override
     public <T> Invoker<T> select(List<Invoker<T>> invokers, URL url, Invocation invocation) throws RpcException {
-        int[] invoker_list = {0, 1, 1, 2, 2, 2};
-        int id = ThreadLocalRandom.current().nextInt(invoker_list.length);
-        return invokers.get(invoker_list[id]);
+        //int[] invoker_list = {0, 1, 1, 2, 2, 2};
+        //int id = ThreadLocalRandom.current().nextInt(invoker_list.length);
+        //return invokers.get(invoker_list[id]);
+        return invokers.get(0);
     }
 }
