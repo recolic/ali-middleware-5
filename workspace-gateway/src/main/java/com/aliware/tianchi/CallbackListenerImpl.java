@@ -17,4 +17,6 @@ public class CallbackListenerImpl implements CallbackListener {
         System.out.println("receive msg from server :" + msg);
     }
 
+    private String cachedServerCpu;
+
 }
