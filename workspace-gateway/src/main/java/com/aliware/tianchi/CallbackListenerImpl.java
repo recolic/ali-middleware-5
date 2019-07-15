@@ -32,4 +32,6 @@ public class CallbackListenerImpl implements CallbackListener {
         UserLoadBalance.weight_small = 6.0 * memory_small / memory_sum;
     }
 
+    private String cachedServerCpu;
+
 }
