@@ -19,11 +19,17 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class UserLoadBalance implements LoadBalance {
 
+    static double weight_large = 3.0;
+    static double weight_medium = 2.0;
+    static double weight_small = 1.0;
+
     @Override
     public <T> Invoker<T> select(List<Invoker<T>> invokers, URL url, Invocation invocation) throws RpcException {
-        int[] invoker_list = {0, 1, 1, 2, 2, 2};
-        int id = ThreadLocalRandom.current().nextInt(6);
-        //System.out.println("Send one request to " + invoker_list[id]);
-        return invokers.get(invoker_list[id]);
+        double thread = ThreadLocalRandom.current().nextDouble(6.0);
+        int id = 2;
+        if (thread < weight_small) id = 0;
+        else if (thread < weight_small + weight_medium) id = 1;
+        System.out.println(id + " | " + weight_large + ',' + weight_medium + ',' + weight_small);
+        return invokers.get(id);
     }
 }
