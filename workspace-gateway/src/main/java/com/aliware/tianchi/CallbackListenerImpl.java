@@ -39,6 +39,7 @@ public class CallbackListenerImpl implements CallbackListener {
             UserLoadBalance.weight_large = 6.0 * memory_large / memory_sum;
             UserLoadBalance.weight_medium = 6.0 * memory_medium / memory_sum;
             UserLoadBalance.weight_small = 6.0 * memory_small / memory_sum;
+            int a=0;
             //System.out.println( UserLoadBalance.weight_large +"  "+ UserLoadBalance.weight_medium+"  "+ UserLoadBalance.weight_small);
             mask = 0x0;
         }
