@@ -22,7 +22,7 @@ public class TestClientFilter implements Filter {
         try{
 
             Result result = invoker.invoke(invocation);
-
+            System.out.println(invoker.getInterface());
             return result;
         }catch (Exception e){
             throw e;
