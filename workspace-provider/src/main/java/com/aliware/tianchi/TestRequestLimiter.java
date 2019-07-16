@@ -20,7 +20,14 @@ public class TestRequestLimiter implements RequestLimiter {
      */
     @Override
     public boolean tryAcquire(Request request, int activeTaskCount) {
-        //if (activeTaskCount > 188) return false;
+        //
+        if("small".equals(System.getProperty("quota"))){
+            if (activeTaskCount > 195) return false;
+        } else if("medium".equals(System.getProperty("quota"))){
+            if (activeTaskCount > 445) return false;
+        } else if("large".equals(System.getProperty("quota"))){
+            if (activeTaskCount > 645) return false;
+        }
         return true;
     }
 

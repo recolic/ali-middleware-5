@@ -26,7 +26,7 @@ public class CallbackServiceImpl implements CallbackService {
             @Override
             public void run() {
                 if (!listeners.isEmpty()) {
-                    //String messageToPush = generateStatusMessage();
+                    //System.out.println("Server push " +generateStatusMessage() + "   Mem="+Runtime.getRuntime().freeMemory());
                     for (Map.Entry<String, CallbackListener> entry : listeners.entrySet()) {
                         try {
                             //entry.getValue().receiveServerMsg(System.getProperty("quota") + " " + new Date().toString());
@@ -37,7 +37,7 @@ public class CallbackServiceImpl implements CallbackService {
                     }
                 }
             }
-        }, 0, 2000);
+        }, 0, 5000);
     }
 
     private Timer timer = new Timer();
@@ -46,7 +46,6 @@ public class CallbackServiceImpl implements CallbackService {
         try {
             List<String> cpuLoadList = getProcessCpuLoad().stream().map(Object::toString).collect(Collectors.toList());
             String cpuLoadString = String.join(",", cpuLoadList);
-            System.out.println("Server push " + cpuLoadString);
             return "cpu=" + cpuLoadString;
         }
         catch(Exception ex) {
