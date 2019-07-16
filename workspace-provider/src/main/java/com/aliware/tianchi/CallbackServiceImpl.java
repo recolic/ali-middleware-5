@@ -37,7 +37,7 @@ public class CallbackServiceImpl implements CallbackService {
                     }
                 }
             }
-        }, 0, 5000);
+        }, 0, 1000);
     }
 
     private Timer timer = new Timer();
@@ -45,8 +45,10 @@ public class CallbackServiceImpl implements CallbackService {
     private String generateStatusMessage() {
         try {
             List<String> cpuLoadList = getProcessCpuLoad().stream().map(Object::toString).collect(Collectors.toList());
-            String cpuLoadString = String.join(",", cpuLoadList);
-            return "cpu=" + cpuLoadString;
+            //String cpuLoadString = String.join(",", cpuLoadList);
+            System.out.println(cpuLoadList.get(0));
+            return cpuLoadList.get(0);
+
         }
         catch(Exception ex) {
             return "error";

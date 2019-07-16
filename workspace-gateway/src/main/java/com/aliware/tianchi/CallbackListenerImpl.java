@@ -42,7 +42,7 @@ public class CallbackListenerImpl implements CallbackListener {
             UserLoadBalance.weight_large =  cpu_large*6.5 / cpu_sum;
             UserLoadBalance.weight_medium =  cpu_medium*4.5 / cpu_sum;
             UserLoadBalance.weight_small =  cpu_small*2.0 / cpu_sum;
-            //System.out.println( UserLoadBalance.weight_large +"  "+ UserLoadBalance.weight_medium+"  "+ UserLoadBalance.weight_small);
+            System.out.println( UserLoadBalance.weight_large +"  "+ UserLoadBalance.weight_medium+"  "+ UserLoadBalance.weight_small);
             mask = 0x0;
         }
     }
