@@ -45,8 +45,8 @@ public class CallbackServiceImpl implements CallbackService {
     private String generateStatusMessage() {
         try {
             List<String> cpuLoadList = getProcessCpuLoad().stream().map(Object::toString).collect(Collectors.toList());
-            //String cpuLoadString = String.join(",", cpuLoadList);
-            return "cpu=" + cpuLoadList[0] ;
+            String cpuLoadString = String.join(",", cpuLoadList);
+            return "cpu=" + cpuLoadString;
         }
         catch(Exception ex) {
             return "error";
