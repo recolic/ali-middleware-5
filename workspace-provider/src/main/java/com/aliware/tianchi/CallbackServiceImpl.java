@@ -29,8 +29,8 @@ public class CallbackServiceImpl implements CallbackService {
                     //System.out.println("Server push " +generateStatusMessage() + "   Mem="+Runtime.getRuntime().freeMemory());
                     for (Map.Entry<String, CallbackListener> entry : listeners.entrySet()) {
                         try {
-                            //entry.getValue().receiveServerMsg(System.getProperty("quota") + " " + new Date().toString());
-                            entry.getValue().receiveServerMsg(System.getProperty("quota") + "," + Runtime.getRuntime().freeMemory());
+                            //entry.getValue().receiveServerMsg(System.getProperty("quota") + " " + new Date().toString());Runtime.getRuntime().freeMemory()
+                            entry.getValue().receiveServerMsg(System.getProperty("quota") + "," + generateStatusMessage());
                         } catch (Throwable t1) {
                             listeners.remove(entry.getKey());
                         }
@@ -45,8 +45,8 @@ public class CallbackServiceImpl implements CallbackService {
     private String generateStatusMessage() {
         try {
             List<String> cpuLoadList = getProcessCpuLoad().stream().map(Object::toString).collect(Collectors.toList());
-            String cpuLoadString = String.join(",", cpuLoadList);
-            return "cpu=" + cpuLoadString;
+            //String cpuLoadString = String.join(",", cpuLoadList);
+            return "cpu=" + cpuLoadList[0] ;
         }
         catch(Exception ex) {
             return "error";

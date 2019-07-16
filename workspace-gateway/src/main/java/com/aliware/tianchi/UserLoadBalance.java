@@ -19,13 +19,13 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class UserLoadBalance implements LoadBalance {
 
-    static double weight_large = 3.0;
-    static double weight_medium = 2.0;
-    static double weight_small = 1.0;
+    static double weight_large = 6.5/13;
+    static double weight_medium = 4.5/13;
+    static double weight_small = 2.0/13;
 
     @Override
     public <T> Invoker<T> select(List<Invoker<T>> invokers, URL url, Invocation invocation) throws RpcException {
-        double thread = ThreadLocalRandom.current().nextDouble(6.0);
+        double thread = ThreadLocalRandom.current().nextDouble(1.0);
         int id = 2;
         if (thread < weight_small) id = 0;
         else if (thread < weight_small + weight_medium) id = 1;

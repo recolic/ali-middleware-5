@@ -14,6 +14,9 @@ public class CallbackListenerImpl implements CallbackListener {
     static long memory_large = 3;
     static long memory_medium = 2;
     static long memory_small = 1;
+    static double cpu_large = 3.0;
+    static double cpu_medium = 2.0;
+    static double cpu_small = 1.0;
     static short mask = 0;
 
     @Override
@@ -21,25 +24,24 @@ public class CallbackListenerImpl implements CallbackListener {
         //System.out.println("receive msg from server :" + msg);
         String[] rcvmsglist = msg.split(",");
         if (rcvmsglist[0].equals("small")) {
-            memory_small = Long.parseLong(rcvmsglist[1]);
+            cpu_small = 100-Double.parseDouble(rcvmsglist[1]);
             mask |= 0x001;
         }
         else if (rcvmsglist[0].equals("medium")) {
-            memory_medium = Long.parseLong(rcvmsglist[1]);
+            cpu_medium = 100-Double.parseDouble(rcvmsglist[1]);
             mask |= 0x010;
         }
         else {
-            memory_large = Long.parseLong(rcvmsglist[1]);
+            cpu_large = 100-Double.parseDouble(rcvmsglist[1]);
             mask |= 0x100;
         }
 
         if (mask == 0x111) {
-            long memory_sum = memory_large + memory_medium + memory_small;
+            double cpu_sum = cpu_large*6.5 + cpu_medium*4.5 + cpu_small*2.0;
             //System.out.println(msg + " : " + memory_large + ',' + memory_medium + ',' + memory_small + "  |  " + memory_sum);
-            UserLoadBalance.weight_large = 6.0 * memory_large / memory_sum;
-            UserLoadBalance.weight_medium = 6.0 * memory_medium / memory_sum;
-            UserLoadBalance.weight_small = 6.0 * memory_small / memory_sum;
-            int a=0;
+            UserLoadBalance.weight_large =  cpu_large*6.5 / cpu_sum;
+            UserLoadBalance.weight_medium =  cpu_medium*4.5 / cpu_sum;
+            UserLoadBalance.weight_small =  cpu_small*2.0 / cpu_sum;
             //System.out.println( UserLoadBalance.weight_large +"  "+ UserLoadBalance.weight_medium+"  "+ UserLoadBalance.weight_small);
             mask = 0x0;
         }
