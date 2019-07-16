@@ -46,7 +46,7 @@ public class CallbackServiceImpl implements CallbackService {
         try {
             List<String> cpuLoadList = getProcessCpuLoad().stream().map(Object::toString).collect(Collectors.toList());
             //String cpuLoadString = String.join(",", cpuLoadList);
-            System.out.println(cpuLoadList.get(0));
+            //System.out.println(cpuLoadList.get(0));
             return cpuLoadList.get(0);
 
         }
